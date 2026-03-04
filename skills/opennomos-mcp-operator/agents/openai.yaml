@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenNomos MCP Operator"
+  short_description: "Operate OpenNomos MCP via OAuth and JSON-RPC tools"
+  default_prompt: "Use OpenNomos MCP endpoints to authenticate, discover tools, and execute tool calls with clear diagnostics."
