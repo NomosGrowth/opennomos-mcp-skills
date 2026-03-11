@@ -1,0 +1,4 @@
+interface:
+  display_name: "OpenNomos Agent MCP"
+  short_description: "Inspect OpenNomos MCP projects, tasks, and points"
+  default_prompt: "Use $opennomos-agent-mcp to inspect OpenNomos MCP data with https://api.opennomos.com and an nk_ key, or prompt for the key if it is missing."

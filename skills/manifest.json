@@ -2,52 +2,19 @@
   "version": "0.1.0",
   "skills": [
     {
-      "name": "opennomos-growth-analysis",
-      "path": "skills/opennomos-growth-analysis/SKILL.md",
-      "description": "Analyze project growth metrics and produce structured diagnosis reports.",
-      "required_scopes": ["mcp.tools.read"],
+      "name": "opennomos-agent-mcp",
+      "path": "skills/opennomos-agent-mcp/SKILL.md",
+      "description": "Query the OpenNomos MCP REST layer with https://api.opennomos.com and an nk_ key to inspect projects, tasks, overview, points, and ledger.",
+      "required_scopes": ["api_key"],
       "required_tools": [
-        "project_overview.get",
-        "project_event_health.get",
-        "project_top_users.list"
-      ]
-    },
-    {
-      "name": "opennomos-event-troubleshooting",
-      "path": "skills/opennomos-event-troubleshooting/SKILL.md",
-      "description": "Investigate event ingestion quality and identify high-impact failure patterns.",
-      "required_scopes": ["mcp.tools.read"],
-      "required_tools": [
-        "project_event_health.get",
-        "project_event_stream.list"
-      ]
-    },
-    {
-      "name": "opennomos-project-inspection",
-      "path": "skills/opennomos-project-inspection/SKILL.md",
-      "description": "Inspect project OAuth integration configuration and optionally fix redirect URI issues.",
-      "required_scopes": ["mcp.tools.read", "mcp.tools.write"],
-      "required_tools": [
-        "oauth_client.get",
-        "oauth_redirect_uris.update"
-      ]
-    },
-    {
-      "name": "opennomos-mcp-operator",
-      "path": "skills/opennomos-mcp-operator/SKILL.md",
-      "description": "Operate OpenNomos MCP end-to-end: OAuth discovery, token issuance, tool discovery, tool execution, and auth/scope diagnostics.",
-      "required_scopes": ["mcp.tools.read", "mcp.tools.write"],
-      "required_tools": [
-        "my_projects.list",
-        "my_points.get",
-        "project_profile.get",
-        "projects.list",
-        "project_overview.get",
-        "project_event_health.get",
-        "project_event_stream.list",
-        "project_top_users.list",
-        "oauth_client.get",
-        "oauth_redirect_uris.update"
+        "GET /api/v1/mcp/projects",
+        "GET /api/v1/mcp/explore/projects",
+        "GET /api/v1/mcp/projects/:project_id",
+        "GET /api/v1/mcp/projects/:project_id/tasks",
+        "GET /api/v1/mcp/projects/:project_id/overview",
+        "GET /api/v1/mcp/me/points",
+        "GET /api/v1/mcp/me/projects/:project_id/points",
+        "GET /api/v1/mcp/me/projects/:project_id/ledger"
       ]
     }
   ]

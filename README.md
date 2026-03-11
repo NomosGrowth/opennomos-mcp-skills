@@ -4,10 +4,7 @@ Reusable Codex skills for operating OpenNomos MCP.
 
 ## Included Skills
 
-- `opennomos-mcp-operator`
-- `opennomos-growth-analysis`
-- `opennomos-event-troubleshooting`
-- `opennomos-project-inspection`
+- `opennomos-agent-mcp`
 
 ## Install
 
@@ -29,5 +26,5 @@ cp -R skills/* "$CODEX_HOME/skills/"
 
 ```bash
 python3 "$CODEX_HOME/skills/.system/skill-creator/scripts/quick_validate.py" \
-  "$CODEX_HOME/skills/opennomos-mcp-operator"
+  "$CODEX_HOME/skills/opennomos-agent-mcp"
 ```
