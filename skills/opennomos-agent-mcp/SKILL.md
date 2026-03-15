@@ -1,6 +1,6 @@
 ---
 name: opennomos-agent-mcp
-description: Query the OpenNomos MCP REST layer with the default base URL `https://api.opennomos.com` and an `nk_` API key. Use when tasks involve analyzing OpenNomos projects, available tasks, project overview, user points, or points ledger from the live backend.
+description: Query the OpenNomos MCP REST layer with the default base URL `https://api.opennomos.com` and an `nk_` API key. Use when tasks involve analyzing OpenNomos projects, available tasks, project overview, my task event stream, user points, or points ledger from the live backend.
 ---
 
 # OpenNomos Agent MCP
@@ -102,6 +102,8 @@ Use these patterns:
   - `GET /api/v1/mcp/projects/:project_id/tasks`
 - Need project KPI/overview:
   - `GET /api/v1/mcp/projects/:project_id/overview`
+- Need to check whether my task event was recorded:
+  - `GET /api/v1/mcp/projects/:project_id/event-stream`
 - Need the user's total points:
   - `GET /api/v1/mcp/me/points`
 - Need points or ledger for one project:
@@ -116,6 +118,7 @@ Apply these rules:
 
 - `404` from `/tasks` usually means the project has no configured task rule yet
 - `projects` can contain both project records and application records; distinguish them before summarizing
+- `/api/v1/mcp/projects/:project_id/event-stream` is the source of truth for “did my task event enter OpenNomos raw ingestion?”
 - `ledger` is accounting-level data and may show types like `daily_emission` or `rollback` instead of task event names
 - if the user asks “how did I get these points,” explain what the ledger confirms and clearly label any inference from task rules
 
@@ -150,6 +153,21 @@ Avoid:
 4. Mark `404 project rule not found` as “no task rule configured”
 5. Present task names, descriptions, scores, and limits
 
+### Check whether my task event was recorded
+
+1. Identify the project ID
+2. Call `/api/v1/mcp/projects/:project_id/event-stream`
+3. Check only the current authenticated user's returned events
+4. Match on the most relevant signal available:
+   - `event_type`
+   - `event_id`
+   - task-related fields inside `payload_preview`
+   - recent timestamp after the action was performed
+5. Report one of these outcomes:
+   - `recorded`: matching event appears in the stream
+   - `not_found`: no matching event appears in the returned window
+   - `unclear`: nearby events exist but there is not enough evidence to match the task confidently
+
 ### Check whether an MCP key works
 
 1. Call `/health`
@@ -172,6 +190,11 @@ Avoid:
 3. Call `/api/v1/mcp/me/projects/:project_id/ledger`
 4. Group ledger entries by `type`
 5. Explain what is confirmed by the ledger and what requires inference from task rules
+
+### Validate task execution
+
+1. Use `/api/v1/mcp/projects/:project_id/event-stream` to answer “was my task event ingested?”
+2. End the validation there unless the user explicitly asks about points or ledger
 
 ## Environment Variables
 

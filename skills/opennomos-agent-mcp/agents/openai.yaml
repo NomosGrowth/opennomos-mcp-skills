@@ -1,4 +1,4 @@
 interface:
   display_name: "OpenNomos Agent MCP"
-  short_description: "Inspect OpenNomos MCP projects, tasks, and points"
-  default_prompt: "Use $opennomos-agent-mcp to inspect OpenNomos MCP data with https://api.opennomos.com and an nk_ key, or prompt for the key if it is missing."
+  short_description: "Inspect OpenNomos MCP projects, tasks, events, and points"
+  default_prompt: "Use $opennomos-agent-mcp to inspect OpenNomos MCP data with https://api.opennomos.com and an nk_ key, or prompt for the key if it is missing. Use /api/v1/mcp/projects/:project_id/event-stream when the user asks whether their task event was recorded, and stop validation there unless the user explicitly asks about points or ledger."

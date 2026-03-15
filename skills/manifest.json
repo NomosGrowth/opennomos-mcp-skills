@@ -4,7 +4,7 @@
     {
       "name": "opennomos-agent-mcp",
       "path": "skills/opennomos-agent-mcp/SKILL.md",
-      "description": "Query the OpenNomos MCP REST layer with https://api.opennomos.com and an nk_ key to inspect projects, tasks, overview, points, and ledger.",
+      "description": "Query the OpenNomos MCP REST layer with https://api.opennomos.com and an nk_ key to inspect projects, tasks, overview, my event stream, points, and ledger.",
       "required_scopes": ["api_key"],
       "required_tools": [
         "GET /api/v1/mcp/projects",
@@ -12,6 +12,7 @@
         "GET /api/v1/mcp/projects/:project_id",
         "GET /api/v1/mcp/projects/:project_id/tasks",
         "GET /api/v1/mcp/projects/:project_id/overview",
+        "GET /api/v1/mcp/projects/:project_id/event-stream",
         "GET /api/v1/mcp/me/points",
         "GET /api/v1/mcp/me/projects/:project_id/points",
         "GET /api/v1/mcp/me/projects/:project_id/ledger"
