@@ -1,10 +1,10 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "skills": [
     {
       "name": "opennomos-agent-mcp",
       "path": "skills/opennomos-agent-mcp/SKILL.md",
-      "description": "Query the OpenNomos MCP REST layer with https://api.opennomos.com and an nk_ key to inspect projects, tasks, overview, my event stream, points, and ledger.",
+      "description": "Query the OpenNomos MCP REST layer with https://api.opennomos.com and an nk_ key to inspect projects, tasks, overview, current actor context, my event stream, points, ledger, and endpoint-backed evidence.",
       "required_scopes": ["api_key"],
       "required_tools": [
         "GET /api/v1/mcp/projects",
