@@ -1,6 +1,6 @@
 ---
 name: opennomos-agent-mcp
-description: Query the OpenNomos MCP REST layer with the default base URL `https://api.opennomos.com` and an `nk_` API key. Use when tasks involve analyzing OpenNomos projects, available tasks, project overview, current actor identity, my task event stream, user points, or points ledger from the live backend.
+description: Query the OpenNomos MCP REST layer with the default base URL `https://api.opennomos.com` and an `nk_` API key. Use when tasks involve analyzing OpenNomos projects, available tasks, project overview, daily operational metrics, current actor identity, my task event stream, user points, or points ledger from the live backend.
 ---
 
 # OpenNomos Agent MCP
@@ -130,6 +130,8 @@ Use these patterns:
   - `GET /api/v1/mcp/projects/:project_id/tasks`
 - Need project KPI/overview:
   - `GET /api/v1/mcp/projects/:project_id/overview`
+- Need project daily operational metrics:
+  - `GET /api/v1/mcp/projects/:project_id/daily-ops`
 - Need to check whether my task event was recorded:
   - `GET /api/v1/mcp/projects/:project_id/event-stream`
 - Need the user's total points:
@@ -210,6 +212,15 @@ Keep tweet URLs, form submission responses, or product-side usage responses as i
 2. Call `/api/v1/mcp/me/points`
 3. Optionally call `/api/v1/mcp/projects`
 4. Confirm whether the key is active by reading the HTTP status and returned data
+
+### Inspect daily project operations
+
+1. Identify the project ID from `/api/v1/mcp/projects` or `/api/v1/mcp/explore/projects`.
+2. Call `/api/v1/mcp/projects/:project_id/daily-ops?window=7d` for a short recent trend, or `window=30d` for a monthly view.
+3. Interpret `registered_users` from `user_signup` events.
+4. Interpret `daily_use_users` and `active_users` from `daily_use` events; currently `active_users` equals `daily_use_users`.
+5. Use `signup_events` and `daily_use_events` for event volume, not unique-user counts.
+6. If all usage fields are zero, say that no `daily_use` aggregate is visible for the requested window rather than assuming nobody used the product.
 
 ### Work with only default BASE_URL + `nk_` key
 

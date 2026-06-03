@@ -1,4 +1,4 @@
 interface:
   display_name: "OpenNomos Agent MCP"
-  short_description: "Inspect OpenNomos MCP projects, tasks, actor context, events, points, and ledger"
-  default_prompt: "Use $opennomos-agent-mcp to inspect OpenNomos MCP data with https://api.opennomos.com and an nk_ key, resolving shell env before repo .env and prompting if the key is missing. Confirm the current actor with /api/v1/mcp/me/points before event-stream comparisons. Use /api/v1/mcp/projects/:project_id/event-stream for task validation with recorded/pending/unclear/failed outcomes, and use points or ledger only when the user asks about accounting."
+  short_description: "Inspect OpenNomos MCP projects, tasks, daily ops, actor context, events, points, and ledger"
+  default_prompt: "Use $opennomos-agent-mcp to inspect OpenNomos MCP data with https://api.opennomos.com and an nk_ key, resolving shell env before repo .env and prompting if the key is missing. Confirm the current actor with /api/v1/mcp/me/points before event-stream comparisons. Use /api/v1/mcp/projects/:project_id/daily-ops for project registration and daily-use trends. Use /api/v1/mcp/projects/:project_id/event-stream for task validation with recorded/pending/unclear/failed outcomes, and use points or ledger only when the user asks about accounting."
